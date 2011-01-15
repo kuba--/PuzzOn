@@ -1,0 +1,220 @@
+<!-- YUI libraries                              -->
+<link rel="stylesheet" type="text/css" href="/yui/carousel.css">
+<script type="text/javascript" language="javascript" src="/yui/utilities.js"></script>
+<script type="text/javascript" language="javascript" src="/yui/container_core-min.js"></script>
+<script type="text/javascript" language="javascript" src="/yui/carousel-min.js"></script>
+
+<style type="text/css">
+    .next-arrow-enabled {
+        z-index: 2;
+        position: absolute;
+        top: 83px;
+        right: 25px;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+    }
+    
+    .next-arrow-disabled {
+        display: none;
+    }
+    
+    .prev-arrow-enabled {
+        z-index: 2;
+        position: absolute;
+        top: 83px;
+        left: 25px;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+    }
+    
+    .prev-arrow-disabled {
+        display: none;
+    }
+    
+    .image-puzzle-item {
+        border-style: none;
+    }        
+</style>
+
+
+<!-- Carousel Structure -->
+<div id="carousel" class="carousel-component">
+    <div class="carousel-clip-region">
+        <ul class="carousel-list">
+        </ul>
+    </div>
+    <img id="prev-arrow" class="prev-arrow-enabled" src="/images/prev.png"/>
+	<img id="next-arrow" class="next-arrow-enabled" src="/images/next.png"/>
+</div>
+
+<script type="text/javascript" language="JavaScript">
+    
+    /**
+     * Custom inital load handler. Called when the carousel loads the initial
+     * set of data items. Specified to the carousel as the configuration
+     * parameter: loadInitHandler
+     */
+    var loadInitialItems = function(type, args){
+    
+        var start = args[0];
+        var last = args[1];
+        // fetch twice the number for caching. images are create once.
+        makeRequest(this, start, (last - start + 1) * 2);
+    };
+    
+    /**
+     * Custom load next handler. Called when the carousel loads the next
+     * set of data items. Specified to the carousel as the configuration
+     * parameter: loadNextHandler
+     */
+    var loadNextItems = function(type, args){
+    
+        var start = args[0];
+        var last = args[1];
+        var alreadyCached = args[2];
+        
+        if (!alreadyCached) {
+            makeRequest(this, start, (last - start + 1) * 2);
+        }
+    };
+    
+    /**
+     * Custom load previous handler. Called when the carousel loads the previous
+     * set of data items. Specified to the carousel as the configuration
+     * parameter: loadPrevHandler
+     */
+    var loadPrevItems = function(type, args){
+        var start = args[0];
+        var last = args[1];
+        var alreadyCached = args[2];
+        
+        if (!alreadyCached) {
+            makeRequest(this, start, (last - start + 1) * 2);
+        }
+    };
+    
+    /**
+     * Custom button state handler for enabling/disabling button state.
+     * Called when the carousel has determined that the previous button
+     * state should be changed.
+     * Specified to the carousel as the configuration
+     * parameter: prevButtonStateHandler
+     */
+    var handlePrevButtonState = function(type, args){
+    
+        var enabling = args[0];
+        var leftImage = args[1];
+        if (enabling) {
+            leftImage.className = "prev-arrow-enabled";
+            leftImage.src = "/images/prev.png";
+        }
+        else {
+            leftImage.className = "prev-arrow-disabled";
+        }
+    };
+    
+    var handleNextButtonState = function(type, args){
+        var enabling = args[0];
+        var rightImage = args[1];
+        
+        if (enabling) {
+            rightImage.className = "next-arrow-enabled";
+            rightImage.src = "/images/next.png";
+        }
+        else {
+            rightImage.className = "next-arrow-disabled";
+        }
+    };
+    
+    var showButtons = function(type, args){
+        YAHOO.util.Dom.setStyle("next-arrow", "visibility", "visible");
+        YAHOO.util.Dom.setStyle("prev-arrow", "visibility", "visible");
+    };
+    
+    
+    /**
+     * You must create the carousel after the page is loaded since it is
+     * dependent on an HTML element (in this case 'carousel'.) See the
+     * HTML code below.
+     */
+    var carousel;
+    var pageLoad = function(){
+        carousel = new YAHOO.extension.Carousel("carousel", {
+            size: 12,
+            animationMethod: YAHOO.util.Easing["bounceOut"],
+            numVisible: 3,
+            animationSpeed: 1.3,
+            scrollInc: 3,
+            loadInitHandler: loadInitialItems,
+            prevElement: "prev-arrow",
+            nextElement: "next-arrow",
+            loadNextHandler: loadNextItems,
+            loadPrevHandler: loadPrevItems,
+            prevButtonStateHandler: handlePrevButtonState,
+            nextButtonStateHandler: handleNextButtonState                    
+        });
+        
+    };
+    
+    YAHOO.util.Event.addListener(window, 'load', pageLoad);
+    
+    /**
+     * Called via the YUI Connection manager (see makeRequest).
+     */
+    var handleSuccess = function(callbackResponse){
+        var start = callbackResponse.argument[0];
+        var numResults = callbackResponse.argument[1];
+        var carousel = callbackResponse.argument[2];
+        
+        if (callbackResponse.responseText !== undefined) {
+            var items = eval('(' + callbackResponse.responseText + ')');
+            
+            for (var i = 0; i < items.length; ++i) {
+                var item = items[i];
+                
+                carousel.addItem(start + i, fmtItemHTML(item));
+            }
+            showButtons();
+        }
+    };
+    
+    /**
+     * Since carousel.addItem uses an HTML string to create the interface
+     * for each carousel item.
+     */
+    var fmtItemHTML = function(item){
+    
+        var params = '?puzzle-item=' + item.id + '&locale=' + '<%=resources.getLocale() %>';
+             
+        var itemHTML = 
+        '<a href="/arena' + params + '">' +
+        '<img class="image-puzzle-item" src="/images/puzzle-item-' + item.id +  '.png" />' +
+        '<\/a>';
+        
+        return itemHTML;
+    };
+    
+    var handleFailure = function(o){
+        var result = o.status + " " + o.statusText;
+        alert("Transaction failed.  The error is: " + result);
+    };
+    
+    /**
+     * The callback object is the configuration object for the YUI Connection
+     * manager. If this is successful, the 'handleSuccess' function is called.
+     */
+    var makeRequest = function(carousel, start, numResults){
+        var params = '?start=' + start + '&results=' + numResults;
+        
+        var callback = {
+            success: handleSuccess,
+            failure: handleFailure,
+            argument: [start, numResults, carousel]
+        };
+        
+        var sUrl = "/api/puzzle/items" + params;
+        YAHOO.util.Connect.asyncRequest("GET", sUrl, callback, null);
+    };
+</script>

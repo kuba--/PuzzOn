@@ -1,0 +1,36 @@
+/**
+ * Copyright (c) 2010 PuzzOn.net
+ */
+
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: Helvetica, Arial, sans-serif;    
+}
+
+*:focus { outline: none; }
+
+
+body {
+    background-color: #f9f6f9;
+}
+
+
+a {
+    color: #e97ccd;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #9e4a89;
+}
+
+#root {
+    
+    background-color: #f9f6f9;
+    background-image: url("/images/home-background.png");
+    background-repeat: no-repeat;
+    background-position: top center;
+    height: 800px;
+    width: 800px;    
+}

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns="http://java.sun.com/xml/ns/javaee"
+ xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+
+    <servlet>
+        <servlet-name>about</servlet-name>
+        <jsp-file>/about/index.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>about</servlet-name>
+        <url-pattern>/about</url-pattern>        
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>arena</servlet-name>
+        <jsp-file>/arena/index.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>arena</servlet-name>
+        <url-pattern>/arena</url-pattern>
+    </servlet-mapping>
+   
+    <servlet>
+        <servlet-name>howto</servlet-name>
+        <jsp-file>/howto/index.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>howto</servlet-name>
+        <url-pattern>/howto</url-pattern>
+    </servlet-mapping>
+        
+    <servlet>
+        <servlet-name>tweets</servlet-name>
+        <jsp-file>/tweets/index.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>tweets</servlet-name>
+        <url-pattern>/tweets</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>
+            Puzzle
+        </servlet-name>
+        <servlet-class>
+            net.puzzon.api.PuzzleService
+        </servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>
+            Puzzle
+        </servlet-name>
+        <url-pattern>
+            /api/puzzle/*
+        </url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>
+            Validate
+        </servlet-name>
+        <servlet-class>
+            net.puzzon.api.ValidateService
+        </servlet-class>
+        
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>
+            Validate
+        </servlet-name>
+        <url-pattern>
+            /api/valid/*
+        </url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>
+            Score
+        </servlet-name>
+        <servlet-class>
+            net.puzzon.api.ScoreService
+        </servlet-class>
+        
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>
+            Score
+        </servlet-name>
+        <url-pattern>
+            /api/score/*
+        </url-pattern>
+    </servlet-mapping>
+    
+    <welcome-file-list>
+        <welcome-file>
+            index.jsp
+        </welcome-file>
+    </welcome-file-list>
+</web-app>

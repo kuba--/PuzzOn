@@ -1,0 +1,27 @@
+<div class="content">
+<p>
+    Some tech notes for geeks:
+</p>
+<ul>
+    <li>
+        The idea of "web design" is taken from project <a href="http://abduzeedo.com">abduzeedo</a>. 
+        The main inspiration was wallpaper <a href="http://abduzeedo.com/wallpaper-week-22">wallpaper-week-22</a>
+    </li>
+    <li>
+        Key technologies were based on the <a href="http://java.com/en/java_in_action/">Java programming language</a>
+        - <a href="http://code.google.com/appengine/">Google App Engine</a>
+    </li>
+    <li>
+        Components that helped us: <a href="http://developer.yahoo.com/yui/">YUI (Yahoo! User Interface)</a>, 
+        amazing things created by <a href="http://looksgoodworkswell.blogspot.com/">Bill Scott</a>.        
+    </li>
+</ul>
+<center>
+    <div id="footer">
+        <img src="/images/appengine.png"  alt="appengine">
+        <div>
+            Google App Engine * Java
+        </div>
+    </div>
+</center>
+</div>

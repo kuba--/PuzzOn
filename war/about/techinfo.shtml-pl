@@ -1,0 +1,26 @@
+<div class="content">
+<p>
+    Dla spragnionych informacji na temat wykorzystanych technologii:
+</p>
+<ul>
+    <li>
+        Idea i pomysł na "design" strony został zaczerpnięty z projektu <a href="http://abduzeedo.com">abduzeedo</a>, a jego główną inspiracją była tapeta <a href="http://abduzeedo.com/wallpaper-week-22">wallpaper-week-22</a>
+    </li>
+    <li>
+        Kluczowe technologie oparte zostały o język programowania <a href="http://java.com/en/java_in_action/">Java</a>
+        - <a href="http://code.google.com/appengine/">Google App Engine</a>
+    </li>
+    <li>
+        Komponenty, które pomogły nam przy pracy: <a href="http://developer.yahoo.com/yui/">YUI (Yahoo! User Interface)</a>
+        oraz magiczne rzeczy stworzone przez <a href="http://looksgoodworkswell.blogspot.com/">Bill-a Scott-a</a>.
+    </li>
+</ul>
+<center>
+    <div id="footer">
+        <img src="/images/appengine.png" alt="appengine">
+        <div>
+            Google App Engine * Java
+        </div>
+    </div>
+</center>
+</div>

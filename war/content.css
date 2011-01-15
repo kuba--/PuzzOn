@@ -1,0 +1,68 @@
+.widget {
+    width: 800px;
+    display: block;
+}
+
+.widget-dialog {
+    width: 800px;
+    padding-top: 188px;
+}
+
+.header {
+    background: url("/images/header.png") no-repeat top center;
+    height: 20px;
+}
+
+.widget-dialog .header {
+    background: url("/images/header-dialog.png") no-repeat top center;
+    height: 20px;
+}
+
+.widget-dialog .header .close-button {
+    position: absolute;
+    left: 760px;
+    top: 3px;
+}
+
+.widget-dialog .header .title {
+    position: absolute;
+    left: 15px;
+    top: 4px;
+}
+
+.footer {
+    background: url("/images/footer.png") no-repeat top center;
+    height: 30px;
+}
+
+.content {
+    background: url("/images/content-rep.png") repeat-y top center;
+    color: #f9f6f9;
+    font-size: 13px;
+    text-align: justify;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+p {
+    padding: 3px;
+}
+
+ul {
+    padding-left: 10px;
+}
+
+h5 {
+    color: #999999 !important;
+    font-size: 10px;
+}
+
+.title {
+    color: #999999 !important;
+    font-size: 13px;
+    font-weight: bold;
+    font-style: italic;
+}
+
