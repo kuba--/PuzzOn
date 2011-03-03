@@ -40,6 +40,23 @@
         <servlet-name>tweets</servlet-name>
         <url-pattern>/tweets</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>
+            Initialize
+        </servlet-name>
+        <servlet-class>
+            net.puzzon.api.InitializeService
+        </servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>
+            Initialize
+        </servlet-name>
+        <url-pattern>
+            /api/init/items
+        </url-pattern>
+    </servlet-mapping>
     
     <servlet>
         <servlet-name>
@@ -54,7 +71,7 @@
             Puzzle
         </servlet-name>
         <url-pattern>
-            /api/puzzle/*
+            /api/puzzle
         </url-pattern>
     </servlet-mapping>
     
@@ -72,7 +89,7 @@
             Validate
         </servlet-name>
         <url-pattern>
-            /api/valid/*
+            /api/valid
         </url-pattern>
     </servlet-mapping>
     

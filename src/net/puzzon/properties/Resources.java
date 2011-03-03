@@ -38,11 +38,14 @@ public class Resources {
 			put("menu.about", "About PuzzOn");
 			put("menu.howto", "How To...");
 			put("menu.tweets", "Latest Tweets!");
+			put("menu.scores", "Your Scores");
 			put("carousel.prev", "previous");
 			put("carousel.next", "next");
 			
 			put("arena.snapping", "snapping puzzles");
 			put("arena.greatjob", "Great Job! Next Puzzle?");
+			
+			put("scores.noscores", "No Scores - you did not solve any puzzle in this session");
 		}
 	};
 
@@ -52,11 +55,14 @@ public class Resources {
 			put("menu.about", "O Nas");
 			put("menu.howto", "Jak Zacząć?");
 			put("menu.tweets", "Najnowsze Pomysły!");
+			put("menu.scores", "Twoje Wyniki");
 			put("carousel.prev", "poprzedni");
 			put("carousel.next", "następny");
 			
 			put("arena.snapping", "dopasowywanie puzzli");
 			put("arena.greatjob", "Znakomicie! Kolejna figura?");
+			
+			put("scores.noscores", "Brak Wyników - w bieżącej sesji nie rozwiązano żadnego puzzla");
 		}
 	};
 

@@ -20,11 +20,15 @@ Stopper.stop = function(){
 
 Stopper.updateInnerHTML = function(){
     ++Stopper.ticks;
-    var s = Stopper.ticks % 60;
-    var m = (Stopper.ticks / 60) % 60;
-    var h = Stopper.ticks / 3600;
+    Stopper.element.innerHTML = Stopper.toStringTime(Stopper.ticks);
+};
+
+Stopper.toStringTime = function(ticks){
+    var s = ticks % 60;
+    var m = (ticks / 60) % 60;
+    var h = ticks / 3600;
     
-    Stopper.element.innerHTML = Stopper.getDoubleDigit(h) + ":" + Stopper.getDoubleDigit(m) + ":" + Stopper.getDoubleDigit(s);
+    return Stopper.getDoubleDigit(h) + ":" + Stopper.getDoubleDigit(m) + ":" + Stopper.getDoubleDigit(s);
 };
 
 Stopper.getDoubleDigit = function(d){

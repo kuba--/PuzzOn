@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import net.puzzon.T_Puzzle;
 
+import com.google.appengine.repackaged.org.json.JSONArray;
 import com.google.appengine.repackaged.org.json.JSONObject;
 
 /**
@@ -27,30 +28,44 @@ public class ScoreService  extends HttpServlet {
 	private static final long serialVersionUID = 2273095853433173698L;
 	
 	/**
-	 * GET /api/score?id=...
+	 * GET /api/score 
+	 * 
+	 * /api/score?id=...
 	 * 
 	 */
 	@Override
-	protected void doGet(final HttpServletRequest req, final HttpServletResponse resp)	throws ServletException, IOException {		
+	public void doGet(final HttpServletRequest req, final HttpServletResponse resp)	throws ServletException, IOException {		
 		resp.setContentType("application/json; charset=UTF-8");
 		resp.setCharacterEncoding("UTF-8");
 		final PrintWriter out = resp.getWriter();
 				
-		final String id = req.getParameter("id");		
+		final String idParam = req.getParameter("id");		
 		
 		final HttpSession session = req.getSession();
 		final Object atr = session.getAttribute("scores");
-
+		
 		try {
 			@SuppressWarnings("unchecked")
-			HashMap<String, String> scores = (HashMap<String, String>)atr;			
-			String ticks = scores.get(id);
-						
-			final JSONObject json = new JSONObject("{id:" + id + ", score:" + ticks + "}");			
-			out.write(json.toString());
+			final
+			HashMap<String, String> scores = (HashMap<String, String>)atr;
+			if (null == idParam || idParam.isEmpty()) {
+		
+				final JSONArray json = new JSONArray();
+				for (final String id : scores.keySet()) {
+					json.put(new JSONObject("{id:" + id + ", ticks:" + scores.get(id) + "}"));
+				}
+				out.write(json.toString());
+				
+			}else {
+				final String ticks = scores.get(idParam);
+				
+				final JSONObject json = new JSONObject("{id:" + idParam + ", ticks:" + ticks + "}");
+				out.write(json.toString());
+			}						
 		}
-		catch (Exception e) {
-			out.write("{}");			
+		catch (final Exception e) {
+			e.printStackTrace();
+			resp.setStatus(400);
 		}
 	}
 	
@@ -60,7 +75,7 @@ public class ScoreService  extends HttpServlet {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	protected void doPost(final HttpServletRequest req, final HttpServletResponse resp)	throws ServletException, IOException {
+	public void doPost(final HttpServletRequest req, final HttpServletResponse resp)	throws ServletException, IOException {
 		resp.setContentType("application/json; charset=UTF-8");
 		resp.setCharacterEncoding("UTF-8");
 		final PrintWriter out = resp.getWriter();
@@ -83,7 +98,7 @@ public class ScoreService  extends HttpServlet {
 			final JSONObject json = new JSONObject("{id:" + id + ", next_id:" + next_id + "}");			
 			out.write(json.toString());
 		}
-		catch (Exception e) {
+		catch (final Exception e) {
 			resp.setStatus(400);
 		}
 	}

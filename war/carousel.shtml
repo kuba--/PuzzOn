@@ -35,9 +35,12 @@
     
     .image-puzzle-item {
         border-style: none;
+/*
+        width: 50px;
+        height: 50px;
+*/        
     }        
 </style>
-
 
 <!-- Carousel Structure -->
 <div id="carousel" class="carousel-component">
@@ -214,7 +217,7 @@
             argument: [start, numResults, carousel]
         };
         
-        var sUrl = "/api/puzzle/items" + params;
+        var sUrl = "/api/init/items" + params;
         YAHOO.util.Connect.asyncRequest("GET", sUrl, callback, null);
     };
 </script>
