@@ -39,6 +39,9 @@
         </script>
         <script type="text/javascript" language="JavaScript" src="/arena/stopper-min.js">
         </script>
+        <script type="text/javascript" language="JavaScript" src="/arena/json-min.js">
+        </script>
+
         <script type="text/javascript" language="JavaScript">
             
             function loadScores(){
