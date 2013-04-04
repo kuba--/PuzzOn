@@ -16,7 +16,7 @@
                 
                 // [1] Create a script element.
                 var script = document.createElement("script");
-                script.setAttribute("src", "http://twitter.com/statuses/user_timeline/puzzon.json?count=3&callback=" + callback);
+                script.setAttribute("src", "https://api.twitter.com/1/statuses/user_timeline/puzzon.json?count=3&callback=" + callback);
                 script.setAttribute("type", "text/javascript");
                 
                 // [2] Add a callback function on the window object.
