@@ -300,7 +300,7 @@ Board.calculateTheta = function(xy, c){
     var beta = Math.atan2(vy, vx);
     var theta = beta - alpha;
     if (theta < 0.0) {
-        theta = Math.PI + (Math.PI - theta);
+        theta = 2.0 * Math.PI + theta;
     }
     
     return (beta > alpha) ? -theta : theta;
